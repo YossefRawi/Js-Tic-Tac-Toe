@@ -60,7 +60,7 @@ const Winning_Text = document.getElementById('WinningMessage')
 
 
 for(let i=0; i <= gridCell.length; i++ ){
-   
+
     //  checks if gridCell is defined because I kept getting an error
     if(gridCell[i] !== undefined){
     gridCell[i].addEventListener("click", ()=>{
@@ -79,14 +79,11 @@ for(let i=0; i <= gridCell.length; i++ ){
         
         checkForWin()
 
-        if (gameBoardModule.gameArray.length === 9){
-            Winning_Text.classList.add('show')
-            WinningText.innerHTML = `Draw`
-        }  
-        swapTurns()
 
         
+        swapTurns()
         
+
         //can click each cell once
     }, {once:true})
 
@@ -111,18 +108,28 @@ function checkForWin(){
         if(check){
             Winning_Text.classList.add('show')
             if (currentPlayer == 'X') {
-                
                 WinningText.innerHTML = `X's Win`
-                }else{
+                }else if(currentPlayer == 'O'){
                     WinningText.innerHTML = `O's Win`
                 }
 
             
         
-    }})
+    } else{
+        checkForDraw()
+    }
+
+})
     
 }
 
+
+function checkForDraw(){
+        if(!checkForWin || gameBoardModule.gameArray.length === 9){
+        Winning_Text.classList.add('show')
+        WinningText.innerHTML = `Draw`  
+    }  
+}
 
 
 
