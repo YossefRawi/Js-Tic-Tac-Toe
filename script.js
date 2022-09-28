@@ -44,8 +44,7 @@ let Operson = O_playerFactory("Player-O")
 
 
 
-//Function renders the contents of the gameboard array to the webpage using
-// EventListeners
+//Function renders the contents of the gameboard array to the webpage using EventListeners
 let renderToScreen = (function(){
 
 const gridCell = document.querySelectorAll('[data-cell]');
@@ -57,16 +56,11 @@ const Winning_Text = document.getElementById('WinningMessage')
 
 
 
-
-
 for(let i=0; i <= gridCell.length; i++ ){
 
     //  checks if gridCell is defined because I kept getting an error
     if(gridCell[i] !== undefined){
     gridCell[i].addEventListener("click", ()=>{
-        
-
-        
         
         gridCell[i].style.backgroundColor = '#fef2f2';
         gridCell[i].style.Color = '#C51E3A';
@@ -75,24 +69,13 @@ for(let i=0; i <= gridCell.length; i++ ){
         
         console.log(gridCell)
         
-        
-        
         checkForWin()
-
-
         
         swapTurns()
         
-
         //can click each cell once
     }, {once:true})
-
-    
-    
     }  
-    
-    
-
 
 }
 
@@ -104,7 +87,6 @@ for(let i=0; i <= gridCell.length; i++ ){
 function checkForWin(){
     gameBoardModule.win_Combo.forEach(function(combo){
         let check = combo.every(index => gridCell[index].innerHTML.trim() == currentPlayer)
-
         if(check){
             Winning_Text.classList.add('show')
             if (currentPlayer == 'X') {
@@ -135,8 +117,7 @@ function checkForDraw(){
 
 
 function swapTurns(){
-    //If the current player is 'X' change it to 'O' , otherwise (meaning if it's 'O'
-    // change it to 'X'
+    //If the current player is 'X' change it to 'O' , otherwise (meaning if it's 'O') change it to 'X'
     currentPlayer = currentPlayer == Xperson.X_Mark? Operson.O_Mark : Xperson.X_Mark
 
 }
